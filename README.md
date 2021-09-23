@@ -24,5 +24,6 @@ For the detectron2 package, you can git clone the repo and install using:
 python -m pip install 'git+https://github.com/facebookresearch/detectron2.git' --user)  
 
 ### instructions:
-(1) prepare jpeg images and place them in a folder
-(2) python 
+(1) prepare jpeg images and place them in a folder  
+(2) run the following command:  
+python oocyst_segmentation.py --dir [path to your folder]
