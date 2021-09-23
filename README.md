@@ -6,14 +6,18 @@
 Visual Studio build tools if using Windows:
 https://visualstudio.microsoft.com/visual-cpp-build-tools/
 
-Python packages:
-torch >=1.9.1  
-torchvision >=0.10.0  
-torchaudio >=0.9.1  
-pycocotools   
-detectron2 (you can git clone the repo and install: python -m pip install 'git+https://github.com/facebookresearch/detectron2.git' --user)  
-dataclasses  
-typing  
-opencv-python  
-xlsxwriter
-pandas >=1.3.3
+Python >3.8  
+Python packages:  
+&nbsp;&nbsp;  detectron2  
+&nbsp;&nbsp;  torch >=1.9.1  
+&nbsp;&nbsp;  torchvision >=0.10.0  
+&nbsp;&nbsp;  torchaudio >=0.9.1  
+&nbsp;&nbsp;  pandas >=1.3.3  
+&nbsp;&nbsp;  pycocotools   
+&nbsp;&nbsp;  dataclasses  
+&nbsp;&nbsp;  typing  
+&nbsp;&nbsp;  opencv-python  
+&nbsp;&nbsp;  xlsxwriter  
+
+For the detectron2 package, you can git clone the repo and install using:  
+python -m pip install 'git+https://github.com/facebookresearch/detectron2.git' --user)  
