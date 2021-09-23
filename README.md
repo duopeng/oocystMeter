@@ -23,8 +23,21 @@ Python packages:
 For the detectron2 package, you can git clone the repo and install using:  
 python -m pip install 'git+https://github.com/facebookresearch/detectron2.git' --user
 
+
+
+
 ### instructions:
-(1) prepare your own jpeg images and place them in a folder. Three images are provided for testing, in folder "test_images"  
-(2) run the following command:  
+(1) Clone the repository
+(2) unzip the two model weight files in the "model" directory:   
+&nbsp;&nbsp; model_0002399.MG.pth  (unzip from model_0002399.MG.zip.001 and model_0002399.MG.zip.002)
+&nbsp;&nbsp; model_0006199.pth  (unzip from model_0006199.zip.001 and model_0006199.zip.002)
+(3) prepare your own jpeg images and place them in a folder, or use the "test_images" folder  
+(2) run oocyst segementation with the following command:
 &nbsp;&nbsp;&nbsp;&nbsp;  python oocyst_segmentation.py --dir [path to your folder]
-(3) Three result files (with the same image name prefix) will be generated for 
+(3) Four result files with the same prefix will be generated for each image
+ &nbsp;&nbsp;   count_N_size.xlsx   oocyst count, area and coordiate of each oocyst, average area
+ &nbsp;&nbsp;   [prefix].oocyst.jpg   oocyst annotated on the original image 
+ &nbsp;&nbsp;   [prefix].midgut.jpg   midgut annotated on the original image
+ &nbsp;&nbsp;   [prefix].midgut.MASK.jpg  A full-resolution black-whight MASK of the midgut identified
+
+
