@@ -2,7 +2,7 @@
 ### Perform oocyst segmentation in mercurochrome stained mosquito midgut
 ### This oocyst segmentation model also powers the webtool at http://got2findthemall.org/
 
-### Requirements:
+### Requirements to run locally:
 
 Visual Studio build tools if using Windows:
 https://visualstudio.microsoft.com/visual-cpp-build-tools/
@@ -22,3 +22,7 @@ Python packages:
 
 For the detectron2 package, you can git clone the repo and install using:  
 python -m pip install 'git+https://github.com/facebookresearch/detectron2.git' --user)  
+
+### instructions:
+(1) prepare jpeg images and place them in a folder
+(2) python 
