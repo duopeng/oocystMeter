@@ -20,7 +20,7 @@ Python packages:
 &nbsp;&nbsp;  opencv-python  
 &nbsp;&nbsp;  xlsxwriter  
 
-For the detectron2 package, you can git clone the repo and install using:  
+For the detectron2 package, you can git clone the repo and install using (must have Git installed):  
 python -m pip install 'git+https://github.com/facebookresearch/detectron2.git' --user
 
 
