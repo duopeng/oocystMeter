@@ -1,5 +1,6 @@
-# midgut_oocyst_segmentation
-## Perform oocyst segmentation in mercurochrome stained mosquito midgut
+## midgut_oocyst_segmentation
+### Perform oocyst segmentation in mercurochrome stained mosquito midgut
+### This oocyst segmentation model also powers the webtool at http://got2findthemall.org/
 
 ### Requirements:
 
