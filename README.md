@@ -1,8 +1,7 @@
 # midgut_oocyst_segmentation
-Perform oocyst segmentation in mercurochrome stained mosquito midgut
+## Perform oocyst segmentation in mercurochrome stained mosquito midgut
 
-
-Requirements:
+### Requirements:
 
 Visual Studio build tools if using Windows:
 https://visualstudio.microsoft.com/visual-cpp-build-tools/
