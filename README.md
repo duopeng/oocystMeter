@@ -29,9 +29,11 @@ python -m pip install 'git+https://github.com/facebookresearch/detectron2.git' -
 ### instructions:  
 (1) Clone the repository  
 
-(2) unzip the two model weight files in the "model" directory:     
-&nbsp;&nbsp;&nbsp;&nbsp; model_0002399.MG.pth  (unzip from model_0002399.MG.zip.001 and model_0002399.MG.zip.002)  
-&nbsp;&nbsp;&nbsp;&nbsp; model_0006199.pth  (unzip from model_0006199.zip.001 and model_0006199.zip.002)  
+(2) unzip the two model weight files and kept it in the "model" directory:     
+&nbsp;&nbsp;&nbsp;&nbsp; model_0002399.MG.pth  
+&nbsp;&nbsp;&nbsp;&nbsp; (unzip from model_0002399.MG.zip.001 and model_0002399.MG.zip.002)  
+&nbsp;&nbsp;&nbsp;&nbsp; model_0006199.pth  
+&nbsp;&nbsp;&nbsp;&nbsp; (unzip from model_0006199.zip.001 and model_0006199.zip.002)  
 
 (3) prepare your own jpeg images and place them in a folder, or use the "test_images" folder    
 
