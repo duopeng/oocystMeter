@@ -21,9 +21,10 @@ Python packages:
 &nbsp;&nbsp;  xlsxwriter  
 
 For the detectron2 package, you can git clone the repo and install using:  
-python -m pip install 'git+https://github.com/facebookresearch/detectron2.git' --user)  
+python -m pip install 'git+https://github.com/facebookresearch/detectron2.git' --user
 
 ### instructions:
 (1) prepare your own jpeg images and place them in a folder. Three images are provided for testing, in folder "test_images"  
 (2) run the following command:  
 &nbsp;&nbsp;&nbsp;&nbsp;  python oocyst_segmentation.py --dir [path to your folder]
+(3) Three result files (with the same image name prefix) will be generated for 
