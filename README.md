@@ -29,7 +29,7 @@ python -m pip install 'git+https://github.com/facebookresearch/detectron2.git' -
 ### instructions:  
 (1) Clone the repository  
 
-(2) unzip the two model weight files and kept it in the "model" directory:     
+(2) unzip the two model weight files and keep it in the "model" directory:     
 &nbsp;&nbsp;&nbsp;&nbsp; <1> model_0002399.MG.pth  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (unzip from model_0002399.MG.zip.001 and model_0002399.MG.zip.002)  
 &nbsp;&nbsp;&nbsp;&nbsp; <2> model_0006199.pth  
