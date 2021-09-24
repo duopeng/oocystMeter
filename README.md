@@ -8,8 +8,10 @@ Visual Studio build tools if using Windows:
 https://visualstudio.microsoft.com/visual-cpp-build-tools/
 
 Python >3.8  
-Python packages (the listed versions are tested to work):  
-&nbsp;&nbsp;  torch=1.9.1  
+
+Python packages:  
+Notes: the listed versions are tested to work. You can use pip to install all the packages listed here, or create a conda environment using conda_env.yml  
+&nbsp;&nbsp; torch=1.9.1  
 &nbsp;&nbsp;  torchvision=0.10.0  
 &nbsp;&nbsp;  torchaudio=0.9.1  
 &nbsp;&nbsp;  pandas=1.3.3  
