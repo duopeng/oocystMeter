@@ -8,7 +8,7 @@ Visual Studio build tools if using Windows:
 https://visualstudio.microsoft.com/visual-cpp-build-tools/
 
 Python >3.8  
-Python packages (the listed version is tested to work):  
+Python packages (the listed versions are tested to work):  
 &nbsp;&nbsp;  torch=1.9.1  
 &nbsp;&nbsp;  torchvision=0.10.0  
 &nbsp;&nbsp;  torchaudio=0.9.1  
