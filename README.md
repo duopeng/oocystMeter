@@ -29,6 +29,7 @@ python -m pip install 'git+https://github.com/facebookresearch/detectron2.git' -
 
 
 
+
 ### instructions:  
 (1) Clone the repository  
 
