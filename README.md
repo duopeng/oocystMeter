@@ -1,17 +1,24 @@
-## Midgut_oocyst_segmentation
-### Perform oocyst segmentation in mercurochrome stained mosquito midguts
-### This oocyst segmentation model also powers the webtool at http://got2findthemall.org/
+# Midgut_oocyst_segmentation
+## Perform oocyst segmentation in mercurochrome stained mosquito midguts
+## This oocyst segmentation model also powers the webtool at http://got2findthemall.org/
 
-### Requirements to run locally:
+## Requirements to run locally:
 
-Visual Studio build tools if using Windows:
-https://visualstudio.microsoft.com/visual-cpp-build-tools/
+(1) <strong>Build tools</strong>  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Visual Studio build tools if using <strong>Windows</strong>:  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;https://visualstudio.microsoft.com/visual-cpp-build-tools/
 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Xcode if using <strong>MacOS</strong>  
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Linux:</strong> you should be able to figure this out if you use Linux  
+
+(2) <strong>Python and packages</strong>
+  
 Python >3.8  
 
 Python packages:  
 Notes: the listed versions are tested to work. You can use pip to install all the packages listed here,  
-or create a conda environment using conda_env.yml  
+or create a conda environment using conda_env.yml supplied by this repo  
 &nbsp;&nbsp;&nbsp;&nbsp; torch=1.9.1  
 &nbsp;&nbsp;&nbsp;&nbsp;  torchvision=0.10.0  
 &nbsp;&nbsp;&nbsp;&nbsp;  torchaudio=0.9.1  
@@ -30,7 +37,7 @@ python -m pip install 'git+https://github.com/facebookresearch/detectron2.git' -
 
 
 
-### instructions:  
+## Instructions:  
 (1) Clone the repository  
 
 (2) unzip the two model weight files and keep it in the "model" directory:     
