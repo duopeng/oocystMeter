@@ -64,7 +64,7 @@ predictor2 = DefaultPredictor(cfg2)
 for filename in os.listdir(config["dir"]):
 
     #read image
-    if filename.endswith('.jpg') or filename.endswith('.jpeg') or filename.endswith('.png') or filename.endswith('.tif') or filename.endswith('.tiff')::
+    if filename.endswith('.jpg') or filename.endswith('.jpeg') or filename.endswith('.png') or filename.endswith('.tif') or filename.endswith('.tiff'):
         im_path= os.path.join(config["dir"],filename)
         im = cv2.imread(im_path)
         print(f"processing {im_path}\n")
