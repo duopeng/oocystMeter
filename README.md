@@ -52,9 +52,9 @@ python -m pip install 'git+https://github.com/facebookresearch/detectron2.git' -
 &nbsp;&nbsp;&nbsp;&nbsp;  python oocyst_segmentation.py --dir [path to your folder]  
 
 (5) Four result files with the same prefix will be generated for each image  
-  &nbsp;&nbsp; &nbsp;&nbsp;   count_N_size.xlsx   oocyst count, area and coordiate of each oocyst, average area  
- &nbsp;&nbsp;  &nbsp;&nbsp;   [prefix].oocyst.jpg   oocyst annotated on the original image   
- &nbsp;&nbsp;  &nbsp;&nbsp;   [prefix].midgut.jpg   midgut annotated on the original image  
-  &nbsp;&nbsp; &nbsp;&nbsp;   [prefix].midgut.MASK.jpg  A full-resolution black-whight MASK of the midgut identified  
+  &nbsp;&nbsp; &nbsp;&nbsp;   count_N_size.xlsx     &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;   &nbsp;&nbsp; &nbsp;&nbsp;  oocyst count, area and coordiate of each oocyst, average area  
+ &nbsp;&nbsp;  &nbsp;&nbsp;   [prefix].oocyst.jpg   &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;   &nbsp;&nbsp; &nbsp;&nbsp; oocyst annotated on the original image   
+ &nbsp;&nbsp;  &nbsp;&nbsp;   [prefix].midgut.jpg    &nbsp;&nbsp;  &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; midgut annotated on the original image  
+  &nbsp;&nbsp; &nbsp;&nbsp;   [prefix].midgut.MASK.jpg  &nbsp;&nbsp; &nbsp;&nbsp;   A full-resolution black-whight MASK of the midgut identified  
 
 
