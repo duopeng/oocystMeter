@@ -28,6 +28,7 @@ or create a conda environment using conda_env.yml supplied by this repo
 &nbsp;&nbsp;&nbsp;&nbsp;  typing=3.7.4.3  
 &nbsp;&nbsp;&nbsp;&nbsp;  opencv-python=4.5.3.56  
 &nbsp;&nbsp;&nbsp;&nbsp; xlsxwriter=3.0.1  
+&nbsp;&nbsp;&nbsp;&nbsp; scipy=1.7.1  
 &nbsp;&nbsp;&nbsp;&nbsp; detectron2=0.5  
 
 For the detectron2 package, you can git clone the repo and install using (must have Git installed):  
