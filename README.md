@@ -32,9 +32,9 @@ or create a conda environment using conda_env.yml supplied by this repo
 &nbsp;&nbsp;&nbsp;&nbsp; detectron2==0.5  
 
 For the detectron2 package, you can git clone the repo and install using (must have Git installed):  
-python -m pip install 'git+https://github.com/facebookresearch/detectron2.git' --user
-or for windows:
-python -m pip install git+https://github.com/facebookresearch/detectron2.git --user
+python -m pip install 'git+https://github.com/facebookresearch/detectron2.git' --user  
+or for windows:  
+python -m pip install git+https://github.com/facebookresearch/detectron2.git --user  
 
 
 
