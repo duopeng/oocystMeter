@@ -14,22 +14,22 @@
 
 (2) <strong>Python and packages</strong>
   
-Python >3.8  
+Python = 3.9.7 
 
 Python packages:  
 Notes: the listed versions are tested to work. You can use pip to install all the packages listed here,  
 or create a conda environment using conda_env.yml supplied by this repo  
-&nbsp;&nbsp;&nbsp;&nbsp; torch=1.9.1  
-&nbsp;&nbsp;&nbsp;&nbsp;  torchvision=0.10.0  
-&nbsp;&nbsp;&nbsp;&nbsp;  torchaudio=0.9.1  
-&nbsp;&nbsp;&nbsp;&nbsp;  pandas=1.3.3  
-&nbsp;&nbsp;&nbsp;&nbsp;  pycocotools=2.0.2   
-&nbsp;&nbsp;&nbsp;&nbsp;  dataclasses=0.6  
-&nbsp;&nbsp;&nbsp;&nbsp;  typing=3.7.4.3  
-&nbsp;&nbsp;&nbsp;&nbsp;  opencv-python=4.5.3.56  
-&nbsp;&nbsp;&nbsp;&nbsp; xlsxwriter=3.0.1  
-&nbsp;&nbsp;&nbsp;&nbsp; scipy=1.7.1  
-&nbsp;&nbsp;&nbsp;&nbsp; detectron2=0.5  
+&nbsp;&nbsp;&nbsp;&nbsp; torch==1.9.1  
+&nbsp;&nbsp;&nbsp;&nbsp;  torchvision==0.10.0  
+&nbsp;&nbsp;&nbsp;&nbsp;  torchaudio==0.9.1  
+&nbsp;&nbsp;&nbsp;&nbsp;  pandas==1.3.3  
+&nbsp;&nbsp;&nbsp;&nbsp;  pycocotools==2.0.2   
+&nbsp;&nbsp;&nbsp;&nbsp;  dataclasses==0.6  
+&nbsp;&nbsp;&nbsp;&nbsp;  typing==3.7.4.3  
+&nbsp;&nbsp;&nbsp;&nbsp;  opencv-python==4.5.3.56  
+&nbsp;&nbsp;&nbsp;&nbsp; xlsxwriter==3.0.1  
+&nbsp;&nbsp;&nbsp;&nbsp; scipy==1.7.1  
+&nbsp;&nbsp;&nbsp;&nbsp; detectron2==0.5  
 
 For the detectron2 package, you can git clone the repo and install using (must have Git installed):  
 python -m pip install 'git+https://github.com/facebookresearch/detectron2.git' --user
