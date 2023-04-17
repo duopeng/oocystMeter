@@ -1,6 +1,6 @@
-# Midgut_oocyst_segmentation
-## Perform oocyst segmentation in mercurochrome stained mosquito midguts
-### This oocyst segmentation model also powers the webtool at  
+# Segment oocyst from images of mosquito images stained with mercurochrome
+
+### Interactive webtool available at  
 http://oocyst.org/  
 http://got2findthemall.org/  
 
