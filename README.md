@@ -3,7 +3,6 @@
 ## Interactive webtool available: 
 http://oocyst.org/  
 http://got2findthemall.org/  
-
 <br>
 
 ## Instructions to run locally:
