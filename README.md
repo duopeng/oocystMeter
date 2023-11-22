@@ -34,7 +34,7 @@ docker pull pengxunduo/oocyst:d2_v0.6_py38
 - The docker image is based on Ubuntu 18.04, with Python 3.8.10, PyTorch 1.9.1, and Detectron2 v0.6.1
 
 
-<br><br>
+<br>
 
 ### Manual install (not recommended):  
 #### (1) Clone the repository  
@@ -58,15 +58,15 @@ Windows:
 &nbsp;&nbsp;&nbsp;<1> model_0002399.MG.pth (unzip from model_0002399.MG.zip.001 and model_0002399.MG.zip.002)  
 &nbsp;&nbsp;&nbsp;<2> model_0006199.pth (unzip from model_0006199.zip.001 and model_0006199.zip.002)  
 
-
+<br>
 
 ## Usage:
-prepare your own jpeg images and place them in a folder, or use the "test_images" folder    
+- prepare your own jpeg images and place them in a folder, for example "test_images" folder    
 
-#### (5) Run oocyst segementation with the following command:  
+- Run oocyst segementation with the following command:  
 `python oocyst_segmentation.py --dir [path to your folder]`  
 
-#### (6) Results
+-  Results
 Four result files with the same prefix will be generated for each image  
   &nbsp;&nbsp; &nbsp;&nbsp;   count_N_size.xlsx     &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;   &nbsp;&nbsp; &nbsp;&nbsp;  oocyst count, area and coordiate of each oocyst, average area  
  &nbsp;&nbsp;  &nbsp;&nbsp;   [prefix].oocyst.jpg   &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;   &nbsp;&nbsp; &nbsp;&nbsp; oocyst annotated on the original image   
@@ -75,9 +75,9 @@ Four result files with the same prefix will be generated for each image
 
    
 <br><br>
-### Installation issues
+## Installation issues
 
-- Make sure the Python you are using is version 3.9.7 
+- Make sure the verion of your Python >=3.7. Versions 3.8.10 and 3.9.7 are tested. 
 - Try manully install the following packages with pip:
 ```
 pip install torch==1.9.1  
