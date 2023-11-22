@@ -1,13 +1,42 @@
 ## Segment oocyst from images of mosquito images stained with mercurochrome
 
-## Interactive webtool available: 
-http://oocyst.org/  
-http://got2findthemall.org/  
-<br>
 
-## Instructions to run locally:
 
-### Usage:  
+## Installation:
+
+### Using docker (recommended):
+
+#### (1) Clone the repository  
+`git clone https://github.com/duopeng/midgut_oocyst_segmentation`
+
+#### (2) Build docker image
+```
+cd midgut_oocyst_segmentation/docker
+
+docker build --build-arg USER_ID=1000 -t pengxunduo/oocyst:d2_v0.6_py38 .
+```
+### (3) Run docker image
+```
+docker run -it --shm-size=8gb --name=oocyst_container pengxunduo/oocyst:d2_v0.6_py38
+```
+### (4) Run example to verify installation
+```
+cd midgut_oocyst_segmentation
+
+python oocyst_segmentation.py --dir test_images
+```
+### Notes:
+- Warnings about "image_list.py:88: UserWarning: __floordiv__ is deprecated," can be ignored.
+- The docker image can be pulled from docker hub using the following command:
+```
+docker pull pengxunduo/oocyst:d2_v0.6_py38
+```
+- The docker image is based on Ubuntu 18.04, with Python 3.8.10, PyTorch 1.9.1, and Detectron2 v0.6.1
+
+
+<br><br>
+
+### Manual install (not recommended):  
 #### (1) Clone the repository  
 `git clone https://github.com/duopeng/midgut_oocyst_segmentation`
 
@@ -24,11 +53,15 @@ MacOS and Linux:
 Windows:  
 `python -m pip install git+https://github.com/facebookresearch/detectron2/tree/v0.5.git --user`  
 
-#### (4) Data prepration
+#### (4) Model file preparation
 - unzip the two model weight files and keep it in the "model" directory:     
 &nbsp;&nbsp;&nbsp;<1> model_0002399.MG.pth (unzip from model_0002399.MG.zip.001 and model_0002399.MG.zip.002)  
 &nbsp;&nbsp;&nbsp;<2> model_0006199.pth (unzip from model_0006199.zip.001 and model_0006199.zip.002)  
-- prepare your own jpeg images and place them in a folder, or use the "test_images" folder    
+
+
+
+## Usage:
+prepare your own jpeg images and place them in a folder, or use the "test_images" folder    
 
 #### (5) Run oocyst segementation with the following command:  
 `python oocyst_segmentation.py --dir [path to your folder]`  
