@@ -1,10 +1,14 @@
 ## Segment oocyst from images of mosquito images stained with mercurochrome
 
+![image](https://github.com/duopeng/midgut_oocyst_segmentation/assets/4129442/7c7db07d-b5ea-4555-83f2-9899b546fcb7)
 
+- Generate oocyst count data each image (in Excel format)
+- Generate area data for each oocyst (in Excel format)
+- Fast runtime (even on CPU)
 
-## Installation:
+<br>
 
-### Using docker (recommended):
+## Installation using docker (recommended):
 
 #### (1) Clone the repository  
 `git clone https://github.com/duopeng/midgut_oocyst_segmentation`
@@ -20,14 +24,15 @@ docker build --build-arg USER_ID=1000 -t pengxunduo/oocyst:d2_v0.6_py38 .
 docker run -it --shm-size=8gb --name=oocyst_container pengxunduo/oocyst:d2_v0.6_py38
 ```
 ### (4) Run example to verify installation
+from inside a container started by (3), execute the following commands:
 ```
 cd midgut_oocyst_segmentation
 
 python oocyst_segmentation.py --dir test_images
 ```
 ### Notes:
-- Warnings about "image_list.py:88: UserWarning: __floordiv__ is deprecated," can be ignored.
-- The docker image can be pulled from docker hub using the following command:
+- Warnings can be ignored, e.g.: "...image_list.py:88: UserWarning: __floordiv__ is deprecated..." .
+- Instead of building the Docker image, a pre-built image can be pulled using the following command:
 ```
 docker pull pengxunduo/oocyst:d2_v0.6_py38
 ```
@@ -36,7 +41,7 @@ docker pull pengxunduo/oocyst:d2_v0.6_py38
 
 <br>
 
-### Manual install (not recommended):  
+## Manual installation (not recommended):  
 #### (1) Clone the repository  
 `git clone https://github.com/duopeng/midgut_oocyst_segmentation`
 
