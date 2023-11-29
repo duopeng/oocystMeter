@@ -14,8 +14,16 @@
 `git clone https://github.com/duopeng/midgut_oocyst_segmentation`
 
 #### (2) Build docker image
+
+for Intel/AMD CPUs:  
 ```
-cd midgut_oocyst_segmentation/docker
+cd midgut_oocyst_segmentation/docker/intel_amd
+
+docker build --build-arg USER_ID=1000 -t pengxunduo/oocyst:d2_v0.6_py38 .
+```
+for Apple silicon:
+```
+cd midgut_oocyst_segmentation/docker/apple_silicon
 
 docker build --build-arg USER_ID=1000 -t pengxunduo/oocyst:d2_v0.6_py38 .
 ```
