@@ -33,8 +33,14 @@ python oocyst_segmentation.py --dir test_images
 ### Notes:
 - Warnings can be ignored, e.g.: "...image_list.py:88: UserWarning: __floordiv__ is deprecated..." .
 - Instead of building the Docker image, a pre-built image can be pulled using the following command:
+  
+Intel CPUs:  
 ```
 docker pull pengxunduo/oocyst:d2_v0.6_py38
+```
+Apple silicon:
+```
+docker pull pengxunduo/oocyst:d2_v0.6_py38_ARM
 ```
 - The docker image is based on Ubuntu 18.04, with Python 3.8.10, PyTorch 1.9.1, and Detectron2 v0.6.1
 
