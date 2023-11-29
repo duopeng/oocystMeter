@@ -31,7 +31,7 @@ docker build --build-arg USER_ID=1000 -t pengxunduo/oocyst:d2_v0.6_py38 .
 ```
 docker run -it --shm-size=8gb --name=oocyst_container pengxunduo/oocyst:d2_v0.6_py38
 ```
-adjust the image name and tag accordingly if you pulled the ARM64 variant of the image
+adjust the image name and tag accordingly if you ***pulled*** the ARM64 variant of the image
 ### (4) Run example to verify installation
 from inside a container started by (3), execute the following commands:
 ```
@@ -43,7 +43,7 @@ python oocyst_segmentation.py --dir test_images
 - Warnings can be ignored, e.g.: "...image_list.py:88: UserWarning: __floordiv__ is deprecated..." .
 - Instead of building the Docker image, a pre-built image can be pulled using the following command:
   
-Intel CPUs:  
+Intel/AMD CPUs:  
 ```
 docker pull pengxunduo/oocyst:d2_v0.6_py38
 ```
