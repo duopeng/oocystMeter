@@ -43,11 +43,11 @@ python oocyst_segmentation.py --dir test_images
 - Warnings can be ignored, e.g.: "...image_list.py:88: UserWarning: __floordiv__ is deprecated..." .
 - Instead of building the Docker image, a pre-built image can be pulled using the following command:
   
-Intel/AMD CPUs:  
+To pull a pre-built docker image for Intel/AMD CPUs:  
 ```
 docker pull pengxunduo/oocyst:d2_v0.6_py38
 ```
-Apple silicon:
+To pull a pre-built docker image for Apple silicon:
 ```
 docker pull pengxunduo/oocyst:d2_v0.6_py38_ARM
 ```
