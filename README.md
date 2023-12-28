@@ -13,7 +13,7 @@
 #### (1) Clone the repository  
 `git clone https://github.com/duopeng/midgut_oocyst_segmentation`
 
-#### (2) Build docker image (or pull pre-built images)
+#### (2) Build docker image (or alternatively, pull a pre-built image)
 
 *for Intel/AMD x86_64 CPUs:*  
 
@@ -23,12 +23,12 @@ cd midgut_oocyst_segmentation/docker/intel_amd_x86_64
 
 docker build --build-arg USER_ID=1000 -t pengxunduo/oocyst:d2_v0.6_py38_x86_64 .
 ```
-pull pre-built image (built on and tested with windows 64bit)
+[alternative] pull pre-built image (built on and tested with windows 64bit)
 ```
 docker pull pengxunduo/oocyst:d2_v0.6_py38_x86_64
 ```
 
-*for Apple silicon:*  
+*for Apple silicon (e.g. M1/M2/M3 processors):*  
 
 build new image
 ```
@@ -36,7 +36,7 @@ cd midgut_oocyst_segmentation/docker/apple_silicon
 
 docker build --build-arg USER_ID=1000 -t pengxunduo/oocyst:d2_v0.6_py38_apple_silicon .
 ```
-pull pre-built image
+[alternative] pull pre-built image
 ```
 docker pull pengxunduo/oocyst:d2_v0.6_py38_ARM
 ```
