@@ -13,26 +13,40 @@
 #### (1) Clone the repository  
 `git clone https://github.com/duopeng/midgut_oocyst_segmentation`
 
-#### (2) Build docker image
+#### (2) Build docker image (or pull pre-built images)
 
-for Intel/AMD CPUs:  
+*for Intel/AMD CPUs:*  
+
+build
 ```
 cd midgut_oocyst_segmentation/docker/intel_amd
 
 docker build --build-arg USER_ID=1000 -t pengxunduo/oocyst:d2_v0.6_py38 .
 ```
-for Apple silicon:
+pull
+```
+docker pull pengxunduo/oocyst:d2_v0.6_py38
+```
+
+*for Apple silicon:*  
+
+build
 ```
 cd midgut_oocyst_segmentation/docker/apple_silicon
 
 docker build --build-arg USER_ID=1000 -t pengxunduo/oocyst:d2_v0.6_py38 .
 ```
-### (3) Run docker image
+pull
+```
+docker pull pengxunduo/oocyst:d2_v0.6_py38_ARM
+```
+
+#### (3) Run docker image
 ```
 docker run -it --shm-size=8gb --name=oocyst_container pengxunduo/oocyst:d2_v0.6_py38
 ```
-adjust the image name and tag accordingly if you ***pulled*** the ARM64 variant of the image
-### (4) Run example to verify installation
+If you ***pulled*** the ARM64 variant of the image, you need to adjust the image name and tag accordingly 
+#### (4) Run example to verify installation
 from inside a container started by (3), execute the following commands:
 ```
 cd midgut_oocyst_segmentation
@@ -40,18 +54,10 @@ cd midgut_oocyst_segmentation
 python oocyst_segmentation.py --dir test_images
 ```
 ### Notes:
-- Warnings can be ignored, e.g.: "...image_list.py:88: UserWarning: __floordiv__ is deprecated..." .
-- Instead of building the Docker image, a pre-built image can be pulled using the following command:
+- Warnings can be ignored, e.g.: "...image_list.py:88: UserWarning: __floordiv__ is deprecated...".
+- The docker image is based on Ubuntu 18.04, with Python 3.8.10, PyTorch 1.9.1, and Detectron2 v0.6.1.
   
-To pull a pre-built docker image for Intel/AMD CPUs:  
-```
-docker pull pengxunduo/oocyst:d2_v0.6_py38
-```
-To pull a pre-built docker image for Apple silicon:
-```
-docker pull pengxunduo/oocyst:d2_v0.6_py38_ARM
-```
-- The docker image is based on Ubuntu 18.04, with Python 3.8.10, PyTorch 1.9.1, and Detectron2 v0.6.1
+
 
 
 <br>
