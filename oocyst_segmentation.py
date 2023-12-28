@@ -24,6 +24,19 @@ from detectron2.config import get_cfg
 from detectron2.utils.visualizer import Visualizer
 from detectron2.data import MetadataCatalog, DatasetCatalog
 
+import warnings
+# Suppress warnings
+warnings.filterwarnings(
+    "ignore",
+    message="__floordiv__ is deprecated, and its behavior will change in a future version of pytorch.*",
+    category=UserWarning
+)
+warnings.filterwarnings(
+    "ignore",
+    message="torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument.*",
+    category=UserWarning
+)
+
 
 class MyParser(argparse.ArgumentParser):
     def error(self, message):
