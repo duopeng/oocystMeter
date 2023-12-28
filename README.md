@@ -15,37 +15,37 @@
 
 #### (2) Build docker image (or pull pre-built images)
 
-*for Intel/AMD CPUs:*  
+*for Intel/AMD x86_64 CPUs:*  
 
-build
+build new image
 ```
-cd midgut_oocyst_segmentation/docker/intel_amd
+cd midgut_oocyst_segmentation/docker/intel_amd_x86_64
 
-docker build --build-arg USER_ID=1000 -t pengxunduo/oocyst:d2_v0.6_py38 .
+docker build --build-arg USER_ID=1000 -t pengxunduo/oocyst:d2_v0.6_py38_x86_64 .
 ```
-pull
+pull pre-built image (built on and tested with windows 64bit)
 ```
-docker pull pengxunduo/oocyst:d2_v0.6_py38
+docker pull pengxunduo/oocyst:d2_v0.6_py38_x86_64
 ```
 
 *for Apple silicon:*  
 
-build
+build new image
 ```
 cd midgut_oocyst_segmentation/docker/apple_silicon
 
-docker build --build-arg USER_ID=1000 -t pengxunduo/oocyst:d2_v0.6_py38 .
+docker build --build-arg USER_ID=1000 -t pengxunduo/oocyst:d2_v0.6_py38_apple_silicon .
 ```
-pull
+pull pre-built image
 ```
 docker pull pengxunduo/oocyst:d2_v0.6_py38_ARM
 ```
 
 #### (3) Run docker image
 ```
-docker run -it --shm-size=8gb --name=oocyst_container pengxunduo/oocyst:d2_v0.6_py38
+docker run -it --shm-size=8gb --name=oocyst_container pengxunduo/oocyst:d2_v0.6_py38_x86_64
 ```
-If you ***pulled*** the ARM64 variant of the image, you need to adjust the image name and tag accordingly 
+If you ***pulled*** the apple silicon variant of the image, you need to adjust the image name and tag accordingly 
 #### (4) Run example to verify installation
 from inside a container started by (3), execute the following commands:
 ```
