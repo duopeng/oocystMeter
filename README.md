@@ -42,10 +42,15 @@ docker pull pengxunduo/oocyst:d2_v0.6_py38_ARM
 ```
 
 #### (3) Run docker image
+*for Intel/AMD x86_64 CPUs:*
 ```
 docker run -it --shm-size=8gb --name=oocyst_container pengxunduo/oocyst:d2_v0.6_py38_x86_64
 ```
-If you ***pulled*** the apple silicon variant of the image, you need to adjust the image name and tag accordingly 
+*for Apple silicon (e.g. M1/M2/M3 processors):*  
+```
+docker run -it --shm-size=8gb --name=oocyst_container pengxunduo/oocyst:d2_v0.6_py38_apple_silicon
+```
+
 #### (4) Run example to verify installation
 from inside a container started by (3), execute the following commands:
 ```
