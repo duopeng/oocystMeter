@@ -13,39 +13,44 @@
 #### (1) Clone the repository  
 `git clone https://github.com/duopeng/midgut_oocyst_segmentation`
 
-#### (2) Build docker image (or pull pre-built images)
+#### (2) Build docker image (or alternatively, pull a pre-built image)
 
-*for Intel/AMD CPUs:*  
+*for Intel/AMD x86_64 CPUs:*  
 
-build
+build new image
 ```
-cd midgut_oocyst_segmentation/docker/intel_amd
+cd midgut_oocyst_segmentation/docker/intel_amd_x86_64
 
-docker build --build-arg USER_ID=1000 -t pengxunduo/oocyst:d2_v0.6_py38 .
+docker build --build-arg USER_ID=1000 -t pengxunduo/oocyst:d2_v0.6_py38_x86_64 .
 ```
-pull
+[alternative] pull pre-built image (built on and tested with windows 64bit)
 ```
-docker pull pengxunduo/oocyst:d2_v0.6_py38
+docker pull pengxunduo/oocyst:d2_v0.6_py38_x86_64
 ```
 
-*for Apple silicon:*  
+*for Apple silicon (e.g. M1/M2/M3 processors):*  
 
-build
+build new image
 ```
 cd midgut_oocyst_segmentation/docker/apple_silicon
 
-docker build --build-arg USER_ID=1000 -t pengxunduo/oocyst:d2_v0.6_py38 .
+docker build --build-arg USER_ID=1000 -t pengxunduo/oocyst:d2_v0.6_py38_apple_silicon .
 ```
-pull
+[alternative] pull pre-built image
 ```
 docker pull pengxunduo/oocyst:d2_v0.6_py38_ARM
 ```
 
 #### (3) Run docker image
+*for Intel/AMD x86_64 CPUs:*
 ```
-docker run -it --shm-size=8gb --name=oocyst_container pengxunduo/oocyst:d2_v0.6_py38
+docker run -it --shm-size=8gb --name=oocyst_container pengxunduo/oocyst:d2_v0.6_py38_x86_64
 ```
-If you ***pulled*** the ARM64 variant of the image, you need to adjust the image name and tag accordingly 
+*for Apple silicon (e.g. M1/M2/M3 processors):*  
+```
+docker run -it --shm-size=8gb --name=oocyst_container pengxunduo/oocyst:d2_v0.6_py38_apple_silicon
+```
+
 #### (4) Run example to verify installation
 from inside a container started by (3), execute the following commands:
 ```
