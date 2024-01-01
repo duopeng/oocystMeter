@@ -85,6 +85,7 @@ for filename in os.listdir(config["dir"]):
         im_path= os.path.join(config["dir"],filename)
         im = cv2.imread(im_path)
         height, width = im.shape[:2]
+        base_filename = os.path.splitext(im_path)[0]
         print(f"processing {im_path}\n")
 
         ########
@@ -108,11 +109,11 @@ for filename in os.listdir(config["dir"]):
         kernel = np.ones((10,10), np.uint8)  #this kernel roughly dilates the midgut about the radius of an typical oocyst
         dilated_midgut_mask = cv2.dilate(midgut_mask, kernel, iterations=1)
         #save dilated mask to file
-        cv2.imwrite(f"{im_path.rstrip('jpg')}midgut.MASK.tiff",midgut_mask,) 
+        cv2.imwrite(f"{base_filename}_midgut.MASK.tiff",midgut_mask,) 
 
         #save midgut mask as polygon (for spatial statistics in R)
         midgut_mask = midgut_instances[best_midgut_idx].pred_masks[0]
-        contours, _ = cv2.findContours(midgut_mask.astype(np.uint8), cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+        contours, _ = cv2.findContours(midgut_mask.numpy().astype(np.uint8), cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
         max_contour = max(contours, key=cv2.contourArea)
         contour = max_contour.squeeze()
         all_points_x = contour[:, 0].tolist()
@@ -128,7 +129,7 @@ for filename in os.listdir(config["dir"]):
         v = Visualizer(im[:, :, ::-1], MetadataCatalog.get(cfg2.DATASETS.TRAIN), scale=1.0)
         v.metadata.thing_classes=["midgut","oocyst"]
         out = v.draw_instance_predictions(midgut_instances[best_midgut_idx])
-        cv2.imwrite(f"{im_path.rstrip('jpg')}midgut.jpg",out.get_image()[:, :, ::-1]) 
+        cv2.imwrite(f"{base_filename}_midgut.jpg",out.get_image()[:, :, ::-1]) 
         del v
         del out
         del midgut_instances
@@ -167,7 +168,7 @@ for filename in os.listdir(config["dir"]):
         v = Visualizer(im[:, :, ::-1], MetadataCatalog.get(cfg.DATASETS.TRAIN), scale=1.0) #need to change cfg.yaml->DATASETS->TRAIN: dataset_train-> dataset_MG_train
         v.metadata.thing_classes=["oocyst","midgut"]
         out = v.draw_instance_predictions(midgut_conf_oocyst_instances)
-        cv2.imwrite(f"{im_path.rstrip('jpg')}oocyst.jpg",out.get_image()[:, :, ::-1]) 
+        cv2.imwrite(f"{base_filename}_oocyst.jpg",out.get_image()[:, :, ::-1]) 
         del v
         del out
         del dilated_midgut_mask
@@ -206,7 +207,7 @@ for filename in os.listdir(config["dir"]):
         df = pd.DataFrame({"Oocyst_area":areas,"center_X":center_X, "center_Y":center_Y})
         df.index+=1 #make index start from 1
         df2 = pd.DataFrame({"Oocyst_count":[count],  "Average_oocyst_area":[Avg_area], "Median_oocyst_area":[Median_area], "Standard_deviation_of_oocyst_area":[std_var_area]})
-        writer = pd.ExcelWriter(f"{im_path.rstrip('jpg')}count_N_size.xlsx", engine='xlsxwriter')
+        writer = pd.ExcelWriter(f"{base_filename}_count_N_size.xlsx", engine='xlsxwriter')
         df2.to_excel(writer, sheet_name='Oocyst_count', index=False)
         df.to_excel(writer, sheet_name='Oocyst_area', index_label="Oocyst_instance")
 
