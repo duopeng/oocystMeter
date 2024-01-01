@@ -74,12 +74,17 @@ cfg2.MODEL.ROI_HEADS.SCORE_THRESH_TEST = 0.5
 cfg2.MODEL.RETINANET.SCORE_THRESH_TEST = 0.5
 predictor2 = DefaultPredictor(cfg2)
 
-for filename in os.listdir(config["dir"]):
+#file handle for roi
+roi_fh = open(f"{config['dir']}/roi.tab","w")
+roi_fh.write("filename\theight\twidth\tx\ty\tarea\tregion_object_type\tregion_shape_attr\n") #write header
 
+#sequentially process all images in the directory
+for filename in os.listdir(config["dir"]):
     #read image
     if filename.endswith('.jpg') or filename.endswith('.jpeg') or filename.endswith('.png') or filename.endswith('.tif') or filename.endswith('.tiff'):
         im_path= os.path.join(config["dir"],filename)
         im = cv2.imread(im_path)
+        height, width = im.shape[:2]
         print(f"processing {im_path}\n")
 
         ########
@@ -104,6 +109,17 @@ for filename in os.listdir(config["dir"]):
         dilated_midgut_mask = cv2.dilate(midgut_mask, kernel, iterations=1)
         #save dilated mask to file
         cv2.imwrite(f"{im_path.rstrip('jpg')}midgut.MASK.tiff",midgut_mask,) 
+
+        #save midgut mask as polygon (for spatial statistics in R)
+        midgut_mask = midgut_instances[best_midgut_idx].pred_masks[0]
+        contours, _ = cv2.findContours(midgut_mask.astype(np.uint8), cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+        max_contour = max(contours, key=cv2.contourArea)
+        contour = max_contour.squeeze()
+        all_points_x = contour[:, 0].tolist()
+        all_points_y = contour[:, 1].tolist()
+        midgut_roi_line = f"{filename}\t{height}\t{width}\t0\t0\t0\t7\t['polygon', {all_points_x}, {all_points_y}]"
+        roi_fh.write(f"{midgut_roi_line}\n")
+
 
         del midgut_mask
         gc.collect() #free up memory, the AWS instance only has 8G memory
@@ -208,6 +224,14 @@ for filename in os.listdir(config["dir"]):
         worksheet.set_column(0, 2, 15)
         writer.save()
 
+        #write oocyst area and x,y to roi file
+        for idx, area in enumerate(areas):
+            x=center_X[idx]
+            y=center_Y[idx]
+            r = (area/3.1416)**0.5
+            roi_line = f"{filename}\t{height}\t{width}\t{x}\t{y}\t{area}\t1\t['circle', {x}, {y}, {r}]"
+            roi_fh.write(f"{roi_line}\n")
+
         del writer
         del midgut_conf_oocyst_instances
         gc.collect()
@@ -215,7 +239,7 @@ for filename in os.listdir(config["dir"]):
         print("completed oocyst recognition")
 
 
-
+roi_fh.close()
         
 del predictor
 del predictor2
@@ -223,3 +247,4 @@ del cfg
 del cfg2
 del config
 gc.collect()
+
