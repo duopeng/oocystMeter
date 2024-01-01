@@ -75,7 +75,8 @@ cfg2.MODEL.RETINANET.SCORE_THRESH_TEST = 0.5
 predictor2 = DefaultPredictor(cfg2)
 
 #file handle for roi
-roi_fh = open(f"{config['dir']}/roi.tab","w")
+last_dir = os.path.basename(os.path.normpath(config["dir"]))
+roi_fh = open(f"{config['dir']}/roi_{last_dir}.tab","w")
 roi_fh.write("filename\theight\twidth\tx\ty\tarea\tregion_object_type\tregion_shape_attr\n") #write header
 
 #sequentially process all images in the directory
