@@ -5,6 +5,7 @@
 - Generate oocyst count data each image (in Excel format)
 - Generate area data for each oocyst (in Excel format)
 - Fast runtime (even on CPU)
+- Smart image resizing (to work with images taken by different microscope cameras)
 
 <br>
 
@@ -21,7 +22,7 @@ build new image
 ```
 cd midgut_oocyst_segmentation/docker/intel_amd_x86_64
 
-docker build --build-arg USER_ID=1000 -t pengxunduo/oocyst:d2_v0.6_py38_x86_64 .
+docker build --build-arg USER_ID=1000 --no-cache -t pengxunduo/oocyst:d2_v0.6_py38_x86_64 .
 ```
 [alternative] pull pre-built image (built on and tested with windows 64bit)
 ```
@@ -34,7 +35,7 @@ build new image
 ```
 cd midgut_oocyst_segmentation/docker/apple_silicon
 
-docker build --build-arg USER_ID=1000 -t pengxunduo/oocyst:d2_v0.6_py38_apple_silicon .
+docker build --build-arg USER_ID=1000 --no-cache -t pengxunduo/oocyst:d2_v0.6_py38_apple_silicon .
 ```
 [alternative] pull pre-built image
 ```
@@ -44,20 +45,33 @@ docker pull pengxunduo/oocyst:d2_v0.6_py38_ARM
 #### (3) Run docker image
 *for Intel/AMD x86_64 CPUs:*
 ```
-docker run -it --shm-size=8gb --name=oocyst_container pengxunduo/oocyst:d2_v0.6_py38_x86_64
+mkdir input_images
+docker run -it --shm-size=8gb --rm \
+-v ./input_images:/home/appuser/input_images \
+--name=oocyst_container pengxunduo/oocyst:d2_v0.6_py38_x86_64
 ```
 *for Apple silicon (e.g. M1/M2/M3 processors):*  
 ```
-docker run -it --shm-size=8gb --name=oocyst_container pengxunduo/oocyst:d2_v0.6_py38_apple_silicon
+# make an input folder
+mkdir -p input_images
+docker run -it --shm-size=8gb --rm \
+-v ./input_images:/home/appuser/input_images \
+--name=oocyst_container pengxunduo/oocyst:d2_v0.6_py38_apple_silicon
 ```
 
 #### (4) Run example to verify installation
 from inside a container started by (3), execute the following commands:
 ```
 cd midgut_oocyst_segmentation
-
 python oocyst_segmentation.py --dir test_images
 ```
+#### (5) Use your own image
+you can put images in the input_images folder (outside the container) and execute the following commands inside the container:
+```
+cd midgut_oocyst_segmentation
+python oocyst_segmentation.py --dir ../input_images
+```
+
 ### Notes:
 - Warnings can be ignored, e.g.: "...image_list.py:88: UserWarning: __floordiv__ is deprecated...".
 - The docker image is based on Ubuntu 18.04, with Python 3.8.10, PyTorch 1.9.1, and Detectron2 v0.6.1.
