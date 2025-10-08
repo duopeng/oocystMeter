@@ -17,6 +17,9 @@ import os, json, cv2, random
 import xlsxwriter
 import pandas as pd
 
+# PIL for image resizing
+from PIL import Image
+
 # import some common detectron2 utilities
 from detectron2 import model_zoo
 from detectron2.engine import DefaultPredictor
@@ -36,6 +39,51 @@ warnings.filterwarnings(
     message="torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument.*",
     category=UserWarning
 )
+
+# Pillow safety: cap reading of huge images if desired (None disables the check)
+Image.MAX_IMAGE_PIXELS = None
+
+
+def resize_to_width(img: Image.Image, target_width: int) -> tuple:
+    """
+    Return a resized copy with the given width while preserving aspect ratio (LANCZOS).
+    Returns (resized_image, scale_factor)
+    """
+    w, h = img.size
+    if w <= target_width:
+        return img.copy(), 1.0
+
+    new_w = target_width
+    new_h = max(1, int(round(h * (new_w / float(w)))))
+    scale = new_w / float(w)
+    resized = img.resize((new_w, new_h), Image.Resampling.LANCZOS)
+    return resized, scale
+
+
+def smart_resize_image(im_path: str, target_width: int = 2800, width_threshold: int = 3000):
+    """
+    Smart resize: only resize if original width > width_threshold.
+    Returns: (image_array, resize_scale)
+    - image_array: numpy array for cv2 processing
+    - resize_scale: the scale factor applied (1.0 if no resize)
+    """
+    # Check if image needs resizing
+    pil_img = Image.open(im_path)
+    orig_width, _ = pil_img.size
+
+    if orig_width > width_threshold:
+        # Resize using PIL
+        resized_img, scale = resize_to_width(pil_img, target_width)
+        # Convert PIL to cv2 format
+        im_array = cv2.cvtColor(np.array(resized_img), cv2.COLOR_RGB2BGR)
+        pil_img.close()
+        resized_img.close()
+        return im_array, scale
+    else:
+        # No resize needed
+        pil_img.close()
+        im_array = cv2.imread(im_path)
+        return im_array, 1.0
 
 
 class MyParser(argparse.ArgumentParser):
@@ -84,10 +132,13 @@ for filename in os.listdir(config["dir"]):
     #read image
     if filename.endswith('.jpg') or filename.endswith('.jpeg') or filename.endswith('.png') or filename.endswith('.tif') or filename.endswith('.tiff'):
         im_path= os.path.join(config["dir"],filename)
-        im = cv2.imread(im_path)
+
+        # Smart resize: resize to 2800px width if original width > 3000px
+        im, resize_scale = smart_resize_image(im_path, target_width=2800, width_threshold=3000)
+
         height, width = im.shape[:2]
         base_filename = os.path.splitext(im_path)[0]
-        print(f"processing {im_path}\n")
+        print(f"processing {im_path} (resize_scale: {resize_scale:.6f})\n")
 
         ########
         #midgut#
@@ -207,7 +258,7 @@ for filename in os.listdir(config["dir"]):
         #write xlxs file
         df = pd.DataFrame({"Oocyst_area":areas,"center_X":center_X, "center_Y":center_Y})
         df.index+=1 #make index start from 1
-        df2 = pd.DataFrame({"Oocyst_count":[count],  "Average_oocyst_area":[Avg_area], "Median_oocyst_area":[Median_area], "Standard_deviation_of_oocyst_area":[std_var_area]})
+        df2 = pd.DataFrame({"Oocyst_count":[count],  "Average_oocyst_area":[Avg_area], "Median_oocyst_area":[Median_area], "Standard_deviation_of_oocyst_area":[std_var_area], "Resize_scale":[resize_scale]})
         writer = pd.ExcelWriter(f"{base_filename}_count_N_size.xlsx", engine='xlsxwriter')
         df2.to_excel(writer, sheet_name='Oocyst_count', index=False)
         df.to_excel(writer, sheet_name='Oocyst_area', index_label="Oocyst_instance")
@@ -216,11 +267,12 @@ for filename in os.listdir(config["dir"]):
         workbook=writer.book
         center = workbook.add_format({'align': 'center'})
         worksheet= writer.sheets['Oocyst_count']
-        worksheet.set_column('A:E', None, center)
+        worksheet.set_column('A:F', None, center)
         worksheet.set_column(0, 0, 15)
         worksheet.set_column(1, 1, 20)
         worksheet.set_column(2, 2, 20)
         worksheet.set_column(3, 3, 33)
+        worksheet.set_column(4, 4, 15)
         worksheet= writer.sheets['Oocyst_area']
         worksheet.set_column('A:B', None, center)
         worksheet.set_column(0, 2, 15)
