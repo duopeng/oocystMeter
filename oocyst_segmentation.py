@@ -56,7 +56,7 @@ def resize_to_width(img: Image.Image, target_width: int) -> tuple:
     new_w = target_width
     new_h = max(1, int(round(h * (new_w / float(w)))))
     scale = new_w / float(w)
-    resized = img.resize((new_w, new_h), Image.Resampling.LANCZOS)
+    resized = img.resize((new_w, new_h), Image.LANCZOS)
     return resized, scale
 
 
