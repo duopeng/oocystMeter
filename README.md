@@ -11,6 +11,9 @@
 
 ## Installation using docker (recommended):
 
+Prerequisite  
+Docker: [Mac](https://docs.docker.com/desktop/setup/install/mac-install/)  [Windows](https://docs.docker.com/desktop/setup/install/windows-install/)
+
 #### (1) Clone the repository  
 `git clone https://github.com/duopeng/midgut_oocyst_segmentation`
 
@@ -24,25 +27,25 @@ cd midgut_oocyst_segmentation/docker/intel_amd_x86_64
 
 docker build --build-arg USER_ID=1000 --no-cache -t pengxunduo/oocyst:d2_v0.6_py38_x86_64 .
 ```
-[alternative] pull pre-built image (built on and tested with windows 64bit)
-```
-docker pull pengxunduo/oocyst:d2_v0.6_py38_x86_64
-```
 
 *for Apple silicon (e.g. M1/M2/M3 processors):*  
 
-build new image
 ```
 cd midgut_oocyst_segmentation/docker/apple_silicon
 
 docker build --build-arg USER_ID=1000 --no-cache -t pengxunduo/oocyst:d2_v0.6_py38_apple_silicon .
 ```
-[alternative] pull pre-built image
+***alternative***: pull a pre-built image  
+Intel/AMD x86_64 CPUs
 ```
 docker pull pengxunduo/oocyst:d2_v0.6_py38_ARM
 ```
+Apple silicon
+```
+docker pull pengxunduo/oocyst:d2_v0.6_py38_x86_64
+```
 
-#### (3) Run docker image
+#### (3) Start a docker container using the image built or pulled
 *for Intel/AMD x86_64 CPUs:*
 ```
 mkdir input_images
@@ -52,24 +55,18 @@ docker run -it --shm-size=8gb --rm \
 ```
 *for Apple silicon (e.g. M1/M2/M3 processors):*  
 ```
-# make an input folder
 mkdir -p input_images
 docker run -it --shm-size=8gb --rm \
 -v ./input_images:/home/appuser/input_images \
 --name=oocyst_container pengxunduo/oocyst:d2_v0.6_py38_apple_silicon
 ```
+NOTE: a folder named `input_images` will be created in the current directory and make available to the docker container via `/home/appuser/input_images`
 
 #### (4) Run example to verify installation
 from inside a container started by (3), execute the following commands:
 ```
 cd midgut_oocyst_segmentation
 python oocyst_segmentation.py --dir test_images
-```
-#### (5) Use your own image
-you can put images in the input_images folder (outside the container) and execute the following commands inside the container:
-```
-cd midgut_oocyst_segmentation
-python oocyst_segmentation.py --dir ../input_images
 ```
 
 ### Notes:
@@ -117,7 +114,32 @@ Windows:
  &nbsp;&nbsp;  &nbsp;&nbsp;   [prefix].midgut.jpg    &nbsp;&nbsp;  &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; midgut annotated on the original image  
   &nbsp;&nbsp; &nbsp;&nbsp;   [prefix].midgut.MASK.jpg  &nbsp;&nbsp; &nbsp;&nbsp;   A full-resolution black-whight MASK of the midgut identified  
 
-   
+### Docker instructions
+create an input folder in root folder `midgut_oocyst_segmentation`, the example creates `input_images`
+```
+cd midgut_oocyst_segmentation
+mkdir input_images 
+```
+Copy your images to the `input_images` folder  
+Start a docker container (using images built during installation)
+Apple silicon
+```
+docker run -it --shm-size=8gb --rm \
+-v ./input_images:/home/appuser/input_images \
+--name=oocyst_container pengxunduo/oocyst:d2_v0.6_py38_apple_silicon
+```
+Intel/AMD
+```
+docker run -it --shm-size=8gb --rm \
+-v ./input_images:/home/appuser/input_images \
+--name=oocyst_container pengxunduo/oocyst:d2_v0.6_py38_x86_64
+```
+Run oocyst segementation with the following command
+```
+cd midgut_oocyst_segmentation
+python oocyst_segmentation.py --dir ../input_images 
+```
+
 <br><br>
 ## Installation issues
 
@@ -139,4 +161,5 @@ pip install detectron2==0.5
 - For the detectron2 package, you need build tools to compile it from source code.
   - MacOS: install `Xcode` from App store  
   - Windows: install [Visual Studio build tools](https://visualstudio.microsoft.com/visual-cpp-build-tools/)
+
 
