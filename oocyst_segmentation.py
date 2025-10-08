@@ -267,16 +267,24 @@ for filename in os.listdir(config["dir"]):
         #format xlxs
         workbook=writer.book
         center = workbook.add_format({'align': 'center'})
+        left = workbook.add_format({'align': 'left'})
+
+        # Format Oocyst_count sheet
         worksheet= writer.sheets['Oocyst_count']
+        worksheet.set_row(0, None, left)  # Left-align header row
         worksheet.set_column('A:F', None, center)
         worksheet.set_column(0, 0, 15)
         worksheet.set_column(1, 1, 20)
         worksheet.set_column(2, 2, 20)
         worksheet.set_column(3, 3, 33)
         worksheet.set_column(4, 4, 15)
+
+        # Format Oocyst_area sheet
         worksheet= writer.sheets['Oocyst_area']
+        worksheet.set_row(0, None, left)  # Left-align header row
         worksheet.set_column('A:B', None, center)
         worksheet.set_column(0, 2, 15)
+
         writer.save()
 
         #write oocyst area and x,y to roi file
