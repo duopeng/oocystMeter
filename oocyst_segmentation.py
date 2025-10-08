@@ -258,7 +258,8 @@ for filename in os.listdir(config["dir"]):
         #write xlxs file
         df = pd.DataFrame({"Oocyst_area":areas,"center_X":center_X, "center_Y":center_Y})
         df.index+=1 #make index start from 1
-        df2 = pd.DataFrame({"Oocyst_count":[count],  "Average_oocyst_area":[Avg_area], "Median_oocyst_area":[Median_area], "Standard_deviation_of_oocyst_area":[std_var_area], "Resize_scale":[resize_scale]})
+        helper_text="NOTE: To get the µm²/pixel for the resized image, divide the original µm²/pixel by the square of the resize scale"
+        df2 = pd.DataFrame({"Oocyst_count":[count],  "Average_oocyst_area":[Avg_area], "Median_oocyst_area":[Median_area], "Standard_deviation_of_oocyst_area":[std_var_area], f"Resize_scale ({helper_text})":[resize_scale]})
         writer = pd.ExcelWriter(f"{base_filename}_count_N_size.xlsx", engine='xlsxwriter')
         df2.to_excel(writer, sheet_name='Oocyst_count', index=False)
         df.to_excel(writer, sheet_name='Oocyst_area', index_label="Oocyst_instance")
